@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Citizen Literacy - Selection</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style_main.css">
+</head>
+
+<body onload="fadeIn()">
+
+    <div class="container">
+
+        <div class="inactive" id="response-correct-wrapper">
+            <div class="correct-container" id="response-correct-container">
+                <img src="../img/correct.png" alt="" class="correct-tick">
+                <div class="second-row">
+                    <button class="btn-third" onclick="retryCorrect()">
+                        <img src="../img/retry.png" alt="" class="correct-retry">
+                    </button>
+                    <span class="separate" id="instance-2"></span>
+                    <button class="btn-third" onclick="nextUrl()">
+                        <img src="../img/next.png" alt="" class="correct-next">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="inactive" id="response-incorrect-wrapper">
+            <div class="incorrect-container" id="response-incorrect-container">
+                <img src="../img/sad.png" alt="" class="incorrect-tick">
+                <div class="second-row">
+                    <button class="btn-third btn-incorrect" onclick="retryIncorrect()">
+                        <img src="../img/retry.png" alt="" class="incorrect-retry">
+                    </button>
+                    <span class="separate" id="instance-2"></span>
+                    <button class="btn-third btn-incorrect" onclick="nextUrl()">
+                        <img src="../img/help.png" alt="" class="incorrect-next">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="header-container">
+            <a href="../index.html">
+                <i class="left"></i>
+                <img src="../img/home.png" alt="Home Button" class="home-link">
+            </a>
+            <img src="../img/logo_white.png" alt="=Logo White" class="header-logo">
+        </div>
+
+        <h1 class="title">Title of Exercise</h1>
+
+        <audio id="myAudio">
+            <source src="media/evil_laugh.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
+<audio id="first">
+    <source src="http://d1bbhsy79h1z3q.cloudfront.net/s.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<audio id="second">
+    <source src="http://d1bbhsy79h1z3q.cloudfront.net/a.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<audio id="third">
+    <source src="http://d1bbhsy79h1z3q.cloudfront.net/t.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<audio id="fourth">
+    <source src="http://d1bbhsy79h1z3q.cloudfront.net/p.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<audio id="fifth">
+    <source src="http://d1bbhsy79h1z3q.cloudfront.net/i.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<audio id="sixth">
+    <source src="http://d1bbhsy79h1z3q.cloudfront.net/n.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+        <button id="audio-play" class="btn-main" onclick="playme(s)">
+            <img src="../img/play.png" alt="" class="incorrect-retry">
+        </button>
+
+        <div class="options-container">
+        <!--  need SWA cloudfront refs to the mp3s for each sound below-->
+            <button onclick="playme(first)" value="s" id="option1" class="options">s</button>
+            <button onclick="playme(second)" value="a" id="option2" class="options">a</button>
+            <button onclick="playme(third)" value="t" id="option3" class="options">t</button>
+            <button onclick="playme(fourth)" value="p" id="option4" class="options">p</button>
+            <button onclick="playme(fifth)" value="i" id="option5" class="options">i</button>
+            <button onclick="playme(sixth)" value="n" id="option6" class="options">n</button>
+        </div>
+
+        <div id="response-container"></div>
+
+
+        <script src="../js/main.js"></script>
+        <script src="../js/selection.js"></script>
+
+    </div>
+</body>
+
+</html>
