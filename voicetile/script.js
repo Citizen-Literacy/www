@@ -34,7 +34,7 @@ var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 //recognition.continuous = false;
-recognition.lang = 'en-US';
+recognition.lang = 'en-GB';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
@@ -52,9 +52,8 @@ colors.forEach(function(v, i, a){
 hints.innerHTML =   quiz ;
 
  function speakit() {
-	 //alert('howdy');
-  recognition.start();
-  console.log('speakit function started: Ready to receive a color command.');
+	   recognition.start();
+  console.log('speakit function started: Ready to receive voice.');
 }
 
 <!-- document.body.onclick = function() { recognition.stop();  console.log('Ready to receive a word.');} 
@@ -79,6 +78,8 @@ recognition.onresult = function(event) {
   alert ('realword is ' + realwordis);
    /// ch added stop in here maybe remove if not works ?
    recognition.stop(); // are we stopped yet ?
+   console.log('Speech recognition has stopped.');
+  // 
 /// ch    
  if  (realwordis == color) {alert('thats correct '); 
  var msg = new SpeechSynthesisUtterance("yes, that's correct , the word is " + quiz);     msg.lang = "en-GB";    window.speechSynthesis.speak(msg); } 
@@ -90,7 +91,8 @@ recognition.onresult = function(event) {
 
 recognition.onspeechend = function() {
   recognition.stop();
- // checkword('pat');
+  console.log('Speech recognition has stopped.');
+  // checkword('pat');
 }
 
 recognition.onnomatch = function(event) {
@@ -114,7 +116,7 @@ var res = s.toLowerCase();
   
   function sayit(me){
 	  
-var msg = new SpeechSynthesisUtterance("pat");     msg.lang = "en-GB";    window.speechSynthesis.speak(msg);
+var msg = new SpeechSynthesisUtterance(me);     msg.lang = "en-GB";    window.speechSynthesis.speak(msg);
 
     }
 	
