@@ -1,12 +1,11 @@
 
 
 //--------------------------------------
-// https://micro-phonics.com/wip<script src="script.js"></script>/dsa/demo/web-speech-api-master/speech-color-changer/voicetile.html?quiz=pat
+// https://micro-phonics.com/wip<script src="../voicetile2/script.js"> 
 
 var quiz= GetUrlValue('quiz'); // get ?quiz=whateverquiz
-//alert(quiz);
-	// grab this quiz string and make it 200 point text so folk see what word they have to say
-	// replacign the images pf Pat
+ console.log(quiz);
+	
 	function GetUrlValue(VarSearch)
 	{
 	var SearchString = window.location.search.substring(1);
@@ -34,7 +33,7 @@ var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
 //recognition.continuous = false;
-recognition.lang = 'en-GB';
+recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
 
@@ -47,18 +46,16 @@ colors.forEach(function(v, i, a){
   console.log(v, i);
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
-<!--hints.innerHTML = 'Tap/click then say a color to change the background color of the app. Try '+ colorHTML + '.';
--->
-hints.innerHTML =   quiz ;
+hints.innerHTML = quiz;
 
  function speakit() {
-	   recognition.start();
-  console.log('speakit function started: Ready to receive voice.');
+	 //alert('howdy');
+  recognition.start();
+  console.log('Ready to receive a color command.');
 }
 
-<!-- document.body.onclick = function() { recognition.stop();  console.log('Ready to receive a word.');} 
+<!--document.body.onclick = function() {   recognition.start();   console.log('Ready to receive a color command.');}
 -->
-
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
   // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
@@ -72,31 +69,25 @@ recognition.onresult = function(event) {
   var last = event.results.length - 1;
   var color = event.results[last][0].transcript;
   color = lowercase(color);
-  diagnostic.textContent = 'Result received: ' + color + '.';
-  alert('word is ' + color);
+  //diagnostic.textContent = 'Result received: ' + color + '.';
+  console.log('word is ' + color);
   var realwordis = quiz;
-  alert ('realword is ' + realwordis);
-   /// ch added stop in here maybe remove if not works ?
-   recognition.stop(); // are we stopped yet ?
-   console.log('Speech recognition has stopped.');
-  // 
-/// ch    
- if  (realwordis == color) {alert('thats correct '); 
+   console.log ('realword is ' + realwordis);
+ if  (realwordis == color) { console.log('thats correct '); 
  var msg = new SpeechSynthesisUtterance("yes, that's correct , the word is " + quiz);     msg.lang = "en-GB";    window.speechSynthesis.speak(msg); } 
- else {alert('Please try that again'); var msg = new SpeechSynthesisUtterance("sorry but that sounded like you said " + color);     msg.lang = "en-GB";    window.speechSynthesis.speak(msg);} 
-  
+ else { console.log('nope'); var msg = new SpeechSynthesisUtterance("sorry but that sounded like you said " + color);     msg.lang = "en-GB";    window.speechSynthesis.speak(msg);} 
+ 
   bg.style.backgroundColor = color;
   console.log('Confidence: ' + event.results[0][0].confidence);
 }
 
 recognition.onspeechend = function() {
   recognition.stop();
-  console.log('Speech recognition has stopped.');
-  // checkword('pat');
+ // checkword('pat');
 }
 
 recognition.onnomatch = function(event) {
-  diagnostic.textContent = "I didn't recognise that word.";
+  diagnostic.textContent = "I didn't recognise that color.";
 }
 
 recognition.onerror = function(event) {
@@ -116,7 +107,7 @@ var res = s.toLowerCase();
   
   function sayit(me){
 	  
-var msg = new SpeechSynthesisUtterance(me);     msg.lang = "en-GB";    window.speechSynthesis.speak(msg);
+var msg = new SpeechSynthesisUtterance("pat");     msg.lang = "en-GB";    window.speechSynthesis.speak(msg);
 
     }
 	

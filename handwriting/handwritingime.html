@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <title>Citizen Literacy - Handwriting ch</title>
+    <title>Citizen Literacy - Handwriting</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" -->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="../css/style_main.css">
- <script src="script.js"></script>
+
 <!-- link rel="stylesheet" href="./ime_files/academicons.min.css"   crossorigin="anonymous">
 <link rel="stylesheet" href="./ime_files/all.css"   crossorigin="anonymous">
 <link rel="stylesheet" href="./ime_files/jquery.fancybox.min.css"  crossorigin="anonymous">
@@ -66,7 +66,7 @@
 
         <div class="inactive" id="response-correct-wrapper">
             <div class="correct-container" id="response-correct-container">
-            <img src="../img/correct.png" alt="" class="correct-tick">
+                <img src="../img/correct.png" alt="" class="correct-tick">
                 <div class="second-row">
                     <button class="btn-third" onclick="retryCorrect()">
                         <img src="../img/retry.png" alt="" class="correct-retry">
@@ -103,7 +103,7 @@
             <img src="../img/logo_white.png" alt="=Logo White" class="header-logo">
         </div>
 
-        <h1 class="title">Try handwriting put in quiz querstring for dynamic handwriting</h1>
+        <h1 class="title">Handwriting Exercise</h1>
 
         
 
@@ -111,30 +111,52 @@
   
   <div class="article-container">
     <div class="article-style" itemprop="articleBody">
-      
-      
-     <p id="demo"></p
-      ><div> <!-- span style="display : inline-block"> PenSize <span id="lineWidth">3</span>
-        <input type="range" id="penSize" min="1" max="30" value="3" -->
-       <button  class="btn-secondary" onclick="sayit(quiz)">Play word</button>
-        <button  class="btn-secondary" onclick="canvas.erase();">Clear</button>
-        <button  class="btn-secondary" onclick="canvas.setOptions({numOfReturn : 2}); canvas.recognize();">Check my writing</button>
-        <!--button onclick="canvas.undo()">Undo</button -->
-        <!-- button onclick="canvas.redo()">Redo</button -->
+     
        
+      <h2 id="demo">&nbsp;</h2>
+      <div> <span style="display : inline-block"> PenSize <span id="lineWidth">3</span>
+        <input type="range" id="penSize" min="1" max="30" value="3">
+        <br>
         <canvas id="canvas" width="400" height="400" style="border: 2px solid; cursor: crosshair;"></canvas>
-       
-        <!-- form>
+        <br>
+        <form>
           Language:
-          <select id="language" >
+          <select id="language">
             <option value="zh_TW">Chinese</option>
-           <option value="ja">Japanese</option>
+            <option value="ja">Japanese</option>
             <option  selected="selected" value="en">English</option>
           </select>
-        </form>-->
-       
-        <span id="result" style="display:none"></span> </span> 
-        
+        </form>
+        <br>
+        <button onclick="canvas.erase();">Erase</button>
+        <button onclick="
+      var e = document.getElementById(&#39;language&#39;);
+      canvas.setOptions({language: e.options[e.selectedIndex].value});
+      canvas.recognize();
+    ">Send</button>
+        <button onclick="canvas.undo()">Undo</button>
+        <button onclick="canvas.redo()">Redo</button>
+        <br>
+        result: <span id="result"></span> </span> 
+        <script type="text/javascript" src="handwriting.canvas.js"></script> 
+        <script type="text/javascript" defer="">
+    var canvas = new handwriting.Canvas(document.getElementById('canvas'), 3);
+    var width = document.getElementById("demo").clientWidth
+    canvas.cxt.canvas.width  = width < 400 ? width : 400;
+    canvas.cxt.canvas.height = width < 400 ? width : 400;
+    canvas.setCallBack(function(data, err) {
+      if (err) throw err;
+      else document.getElementById("result").innerHTML = data;
+    });
+    canvas.set_Undo_Redo(true, true);
+    var penSize = document.getElementById("penSize");
+    penSize.addEventListener("mousemove", function() {
+      document.getElementById("lineWidth").innerHTML = penSize.value;
+    });
+    penSize.addEventListener("change", function(){
+      canvas.setLineWidth(penSize.value);
+    });
+  </script> 
       </div>
     </div>
      
@@ -174,44 +196,6 @@
         <script src="../js/main.js"></script>
         <!-- script src="../js/handwriting.js"></script -->
     </div>
-     <script type="text/javascript" src="handwriting.canvas.js"></script> 
-        <script type="text/javascript" defer="">
-    var canvas = new handwriting.Canvas(document.getElementById('canvas'), 3);
-	canvas.setOptions({numOfReturn : 2});
-	console.log(canvas.options); 
-       canvas.setLineWidth(10);
-	   console.log('line width is '+canvas.lineWidth);
-	   canvas.setOptions({language:"en"});
-	console.log(canvas.options); 
-       
-    var width = document.getElementById("demo").clientWidth
-    canvas.cxt.canvas.width  = width < 400 ? width : 400;
-    canvas.cxt.canvas.height = width < 400 ? width : 400;
-    canvas.setCallBack(function(data, err) {
-      if (err) throw err;
-      else document.getElementById("result").innerHTML = data;
-	  //alert(data);
-	    var word = GetUrlValue('quiz');
-		console.log('word is ' + word);
-	  //var word = "sat";
-	 	 if (data.includes(word)) {
-		 var msg = new SpeechSynthesisUtterance("Excellent; your handwriting is correct. Well done.");     msg.lang = "en-GB";    window.speechSynthesis.speak(msg);
-		  }
-	  else { 
-	   var msg = new SpeechSynthesisUtterance("Please try that again; you're nearly there.");     msg.lang = "en-GB";    window.speechSynthesis.speak(msg); }
-    });
-    canvas.set_Undo_Redo(true, true);
-	<!-- commented out the below cos we arent using pensize options..-->
-   <!--  var penSize = document.getElementById("penSize"); -->
-     <!-- penSize.addEventListener("mousemove", function(){ -->
-		 <!-- document.getElementById("lineWidth").innerHTML = penSize.value;   -->  
-		 <!-- }); -->
-     <!-- penSize.addEventListener("change", function(){ -->
-		 <!-- canvas.setLineWidth(penSize.value); -->
-		 <!-- }); -->
-		function changeImage(a) {document.getElementById("scoreimg").src=a;}
-	
-  </script>
 </body>
 
 </html>

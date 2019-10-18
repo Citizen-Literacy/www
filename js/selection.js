@@ -1,3 +1,23 @@
+
+
+var quiz= GetUrlValue('quiz'); // get ?quiz=whateverquiz
+//alert(quiz);
+	// grab this quiz string and make it 200 point text so folk see what word they have to say
+	// replacign the images pf Pat
+	function GetUrlValue(VarSearch)
+	{
+	var SearchString = window.location.search.substring(1);
+	var VariableArray = SearchString.split('&');
+	for(var i = 0; i < VariableArray.length; i++)
+	{
+		var KeyValuePair = VariableArray[i].split('=');
+		if(KeyValuePair[0] == VarSearch){return KeyValuePair[1];}
+
+	}
+	}
+console.log(quiz);
+
+// ------------------------
 var audioClip = document.getElementById("myAudio");
 
 function playme(x) {
@@ -54,3 +74,11 @@ function postSelection(letter) {
 	// post values
     xmlhttp.send(JSON.stringify( { selectedLetter: letter } ));
 }
+
+
+//----------------------
+  function sayit(me){	  
+var msg = new SpeechSynthesisUtterance(me);     msg.lang = "en-GB";    window.speechSynthesis.speak(msg);
+
+    }
+	

@@ -29,7 +29,7 @@ function voiceUrl() {
 }
 
 function selectionUrl() {
-	window.location.assign("audio/selection.html");
+	window.location.assign("audio/selection.html?quiz=sat");
 }
 
 function nextUrl() {
@@ -46,11 +46,7 @@ function fadeIn(){
 }
 
 
-/* Responses */
-function sayit(x) {
-/*   var msg = new SpeechSynthesisUtterance(x);     msg.lang = "en-GB";    window.speechSynthesis.speak(msg); 
-*/   
-}
+ 
 
 
  function retryCorrect(){
@@ -90,3 +86,4 @@ function sayit(x) {
      };
    
  }
+ 
