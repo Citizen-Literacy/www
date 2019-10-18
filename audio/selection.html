@@ -54,7 +54,7 @@
             <img src="../img/logo_white.png" alt="=Logo White" class="header-logo">
         </div>
 
-        <h1 class="title">Select the letters <div onclick="sayit('hello world')>(?)</div></h1>
+        <h1 class="title" onClick="sayit('Click play to hear a word then select the letters to spell the word you hear')">Select the letters (?)</h1>
 
 
         <audio id="myAudio">
@@ -119,9 +119,11 @@ for(i = 0; i < buttons.length; i++) {
                     <button style="display:none" class="btn-third btn-incorrect" onclick="nextUrl()">
                         <img src="../img/help.png" alt="" class="incorrect-next" >
                     </button>
-        <button id="audio-play" class="btn-main" onclick="playAudio()">
+                      <!-- button id="audio-play" class="btn-main" onclick="playAudio()" -->
+        <button id="audio-play" class="btn-main" onclick="sayit(quiz)">
             <img src="../img/play.png" alt="" class="incorrect-retry">
         </button>
+        
 <input align="middle" id="pressed"  type="text" data-valid="s a t " data-buttons="3" style="display:none;">
 <input align="middle" id="pressed2" type="text" data-valid="s a t " data-buttons="3" style="text-align: center;
     color: white;
@@ -137,7 +139,8 @@ for(i = 0; i < buttons.length; i++) {
     right: auto;
     display: block;
     margin: auto;">
-        <div class="options-container">
+   
+<div class="options-container">
             <button  value="s" id="option1" class="options">s</button>
             <button  value="a" id="option2" class="options">a</button>
             <button  value="p" id="option3" class="options">p</button>
@@ -145,7 +148,9 @@ for(i = 0; i < buttons.length; i++) {
             <button  value="i" id="option5" class="options">i</button>
             <button  value="n" id="option6" class="options">n</button>
         </div>
-
+ <button id="retry" class="btn-main" onclick="retry()">
+            <img src="../img/retry.png" alt="Refresh Page" class="incorrect-retry" value="Refresh Page" onClick="window.location.reload();">
+        </button>
         <div id="response-container"></div>
 
 
